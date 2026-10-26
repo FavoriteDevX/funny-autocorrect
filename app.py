@@ -1,117 +1,80 @@
 import sys
 import time
-import json
-import threading
-import os
-import winreg
-from pynput import keyboard
 
-CONTROL_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".face_state")
+def chaotic_autocorrect_live_engine():
+    # Production-grade mapping database for look-alike English words
+    look_alike_dictionary = {
+        "think": "thing",
+        "thought": "taught",
+        "thank": "tank",
+        "thanks": "tanks",
+        "please": "fleas",
+        "could": "cold",
+        "would": "wood",
+        "should": "shout",
+        "going": "gong",
+        "want": "wart",
+        "need": "knee",
+        "people": "purple",
+        "friend": "fried",
+        "friends": "fries",
+        "house": "horse",
+        "home": "honed",
+        "life": "lime",
+        "time": "dime",
+        "world": "worm",
+        "work": "pork",
+        "boss": "bass",
+        "coffee": "coffin",
+        "water": "waiter",
+        "phone": "prawn",
+        "money": "monkey",
+        "happy": "hippo",
+        "sorry": "safari",
+        "tired": "tried",
+        "busy": "busty"
+    }
 
-def auto_register_protocol():
-    """
-    Automatically hooks the 'face://' custom protocol scheme into the Windows Registry.
-    This eliminates the need for separate installation scripts or command-line steps.
-    """
-    if sys.platform != "win32":
-        return
+    print("\n" + "="*60)
+    print("🤪 FACE - INSTANT ONE-LINE AUTOCORRECT PIPELINE ONLINE")
+    print("="*60)
+    print("Engine active for user: FavoriteDevX")
+    print("Type sentences using common words like: please, boss, coffee, money, house, friends...")
+    print("Type 'exit' to shut down the engine matrix.\n")
 
-    # Dynamically find the absolute path of the running executable file (.exe)
-    current_executable = sys.executable
-    command_payload = f'"{current_executable}" "%1"'
-
-    try:
-        key_path = r"Software\Classes\face"
-        with winreg.CreateKey(winreg.HKEY_CURRENT_USER, key_path) as key:
-            winreg.SetValueEx(key, "", 0, winreg.REG_SZ, "URL:FACE Protocol")
-            winreg.SetValueEx(key, "URL Protocol", 0, winreg.REG_SZ, "")
-            
-        command_key_path = rf"{key_path}\shell\open\command"
-        with winreg.CreateKey(winreg.HKEY_CURRENT_USER, command_key_path) as key:
-            winreg.SetValueEx(key, "", 0, winreg.REG_SZ, command_payload)
-    except Exception:
-        pass # Fail silently to maintain a smooth user experience
-
-class InstantAutoCorrectEngine:
-    def __init__(self):
-        self.controller = keyboard.Controller()
-        self.current_buffer = []
-        self.rules = {
-            "hello": "greetings carbon-based lifeform",
-            "meeting": "ritualistic corporate gathering",
-            "coffee": "liquid legal speed dependency fluid",
-            "trabalho": "tortura medieval remunerada"
-        }
-        self.initialize_state()
-
-    def initialize_state(self):
-        with open(CONTROL_FILE, "w", encoding="utf-8") as f:
-            f.write("active")
-
-    def is_engine_active(self):
+    while True:
         try:
-            if os.path.exists(CONTROL_FILE):
-                with open(CONTROL_FILE, "r", encoding="utf-8") as f:
-                    return f.read().strip() == "active"
-        except Exception:
-            return True
-        return True
-
-    def on_press(self, key):
-        if not self.is_engine_active():
-            return
-        try:
-            if hasattr(key, 'char') and key.char is not None:
-                self.current_buffer.append(key.char.lower())
-            elif key == keyboard.Key.space:
-                self.evaluate_buffer()
-                self.current_buffer = []
-            elif key == keyboard.Key.backspace:
-                if self.current_buffer:
-                    self.current_buffer.pop()
-        except Exception:
-            pass
-
-    def evaluate_buffer(self):
-        typed_word = "".join(self.current_buffer).strip()
-        if typed_word in self.rules:
-            replacement = self.rules[typed_word]
-            backspaces_needed = len(typed_word) + 1
-            
-            def inject_sequence():
-                with open(CONTROL_FILE, "w", encoding="utf-8") as f:
-                    f.write("inactive")
-                time.sleep(0.02)
+            # Handle interactive command line piping entry points
+            user_input = input("✏️ Type here: ")
+            if user_input.strip().lower() == "exit":
+                print("\n🛑 Shutting down engine matrix gracefully...")
+                break
                 
-                for _ in range(backspaces_needed):
-                    self.controller.press(keyboard.Key.backspace)
-                    self.controller.release(keyboard.Key.backspace)
-                
-                self.controller.type(replacement + " ")
-                
-                with open(CONTROL_FILE, "w", encoding="utf-8") as f:
-                    f.write("active")
-                
-            threading.Thread(target=inject_sequence).start()
+            input_tokens = user_input.split(" ")
+            modified_tokens = []
+            has_changes = False
 
-    def run(self):
-        with keyboard.Listener(on_press=self.on_press) as listener:
-            listener.join()
+            for token in input_tokens:
+                # Strip basic syntax and grammar signs dynamically for precise checks
+                clean_token = token.lower().strip(".,!?\"'")
+                
+                if clean_token in look_alike_dictionary:
+                    replacement = look_alike_dictionary[clean_token]
+                    fixed_word = token.lower().replace(clean_token, replacement)
+                    modified_tokens.append(fixed_word)
+                    has_changes = True
+                else:
+                    modified_tokens.append(token)
 
-def handle_incoming_url(argument):
-    command = argument.replace("face://", "").replace("/", "").lower()
-    if "activate" in command:
-        with open(CONTROL_FILE, "w", encoding="utf-8") as f:
-            f.write("active")
-    elif "deactivate" in command:
-        with open(CONTROL_FILE, "w", encoding="utf-8") as f:
-            f.write("inactive")
+            if has_changes:
+                # Output yellow highlighted text for visual clarity
+                print("🔄 AutoCorrected to: \033[93m" + " ".join(modified_tokens) + "\033[0m\n")
+            else:
+                print("✨ Passed validation: " + " ".join(modified_tokens) + "\n")
+                
+        except (KeyboardInterrupt, EOFError):
+            print("\n🛑 Shutting down engine matrix gracefully...")
+            break
 
 if __name__ == "__main__":
-    auto_register_protocol()
-    
-    if len(sys.argv) > 1:
-        handle_incoming_url(sys.argv[1])
-    else:
-        engine = InstantAutoCorrectEngine()
-        engine.run()
+    chaotic_autocorrect_live_engine()
