@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Funny AutoCorrect Everywhere (FACE)",
+  "version": "1.0",
+  "description": "Instantly turns ordinary English words into hilariously dramatic, chaotic, or bizarre alternatives across the web.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
