@@ -53,3 +53,5 @@ The minimal footprint of this repository relies on two core structural modules l
 Feel free to open a Pull Request to expand the `lookAlikeDictionary` registry inside `content.js` with more hilariously broken English vocabulary swaps!
 
 ---
+
+<img width="299" height="168" alt="image" src="https://github.com/user-attachments/assets/c82f77ae-e6d4-4fcd-bb93-aa098ed9b508" />
