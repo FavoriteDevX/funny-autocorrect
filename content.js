@@ -1,88 +1,55 @@
 (function() {
-    console.log("[🤪 FACE] Chaotic Multiverse AutoCorrect Active.");
+    console.log("[🤪 FACE] Misunderstanding Autocorrect Active.");
 
-    // Comprehensive comedic mapping covering core English verbs, nouns, pronouns, and business speak
-    const megaDictionary = {
-        // Greetings & Basics
-        "hello": "greetings, mortal carbon-based lifeform",
-        "hi": "salutations, fleshy bipedal creature",
-        "hey": "listen closely, organic entity",
-        "thanks": "i offer my eternal unpayable debt of gratitude",
-        "thank": "worship",
-        "please": "i beg of you on my bruised knees",
-        "yes": "absolutely, by order of the high council",
-        "no": "absolutely not, under strict legal advice",
-        "ok": "acknowledged with minor existential dread",
-        "okay": "i compliance under deep psychological duress",
-        "bye": "gargantuan farewell, remember my legacy",
+    // Words replaced by look-alike or sound-alike words with completely chaotic meanings
+    const lookAlikeDictionary = {
+        // Core Common Verbs & Pronouns
+        "think": "thing",      // "I think" -> "I thing"
+        "thought": "taught",  // "I thought" -> "I taught"
+        "thank": "tank",       // "Thank you" -> "Tank you"
+        "thanks": "tanks",     // "Thanks for" -> "Tanks for"
+        "please": "fleas",     // "Please help" -> "Fleas help"
+        "could": "cold",       // "I could" -> "I cold"
+        "would": "wood",       // "It would be" -> "It wood be"
+        "should": "shout",     // "You should" -> "You shout"
+        "going": "gong",       // "I am going" -> "I am gong"
+        "want": "wart",        // "I want this" -> "I wart this"
+        "need": "knee",        // "I need it" -> "I knee it"
+        "were": "wire",        // "They were" -> "They wire"
+        "where": "whale",      // "Where is" -> "Whale is"
+        "their": "there",      // Typo mimic
+        "there": "they're",    // Typo mimic
 
-        // Corporate & Work Speak
-        "meeting": "ritualistic corporate gathering of despair",
-        "work": "voluntary modern economic confinement",
-        "job": "daily capitalist survival trial",
-        "boss": "Supreme Overlord of my Daily Misery",
-        "manager": "designated corporate cattle herder",
-        "deadline": "moment of absolute imminent doom",
-        "project": "collaborative chaotic experiment",
-        "email": "digital letter of structural passive-aggression",
-        "money": "imaginary dynamic validation tokens",
-        "salary": "crumbs from the master's table",
-        "business": "monopoly money activities",
-        "team": "group of beautifully confused individuals",
-        "strategy": "highly elaborate guessing game",
-        "marketing": "weaponized corporate gaslighting",
+        // Common Nouns & Objects
+        "people": "purple",    // "Many people" -> "Many purple"
+        "friend": "fried",     // "My best friend" -> "My best fried"
+        "friends": "fries",    // "With friends" -> "With fries"
+        "house": "horse",      // "Go to my house" -> "Go to my horse"
+        "home": "honed",       // "Stay home" -> "Stay honed"
+        "life": "lime",        // "My entire life" -> "My entire lime"
+        "time": "dime",        // "One more time" -> "One more dime"
+        "world": "worm",       // "Around the world" -> "Around the worm"
+        "work": "pork",        // "Go to work" -> "Go to pork"
+        "boss": "bass",        // "Talk to my boss" -> "Talk to my bass"
+        "coffee": "coffin",    // "Drink some coffee" -> "Drink some coffin"
+        "water": "waiter",     // "Glass of water" -> "Glass of waiter"
+        "phone": "prawn",      // "On my phone" -> "On my prawn"
+        "money": "monkey",     // "Need more money" -> "Need more monkey"
+        "night": "knight",     // "Good night" -> "Good knight"
+        "week": "weak",        // "Next week" -> "Next weak"
+        "year": "gear",        // "This year" -> "This gear"
 
-        // Food & Life Dependencies
-        "coffee": "liquid legal speed anxiety fluid",
-        "water": "essential hydrogen-oxygen hydration juice",
-        "food": "biological fuel matrix input",
-        "lunch": "temporary mid-day nutrient ingestion break",
-        "dinner": "the final feast before the night terror",
-        "breakfast": "morning chemical awakening ritual",
-        "beer": "fermented liquid liquid inhibition deleter",
-        "wine": "grape juice for emotional coping mechanics",
-        "diet": "temporary starvation protocol prior to pizza",
-
-        // Daily Actions & Verbs
-        "sleep": "temporary simulation of the afterlife",
-        "tired": "soul-crushed and biologically decaying",
-        "busy": "pretending to be valuable to society",
-        "help": "rescue my sinking psychological ship",
-        "love": "flawed biochemical trick to propagate genes",
-        "hate": "intense cellular allergic reaction to existence",
-        "like": "mildly tolerate without vomiting",
-        "think": "generate highly unstable thoughts",
-        "know": "delude myself into absolute certainty",
-        "want": "crave due to unchecked consumerism",
-        "need": "desperately require for survival comfort",
-        "coding": "smashing plastic buttons until computer screams",
-        "programming": "injecting dark magic into microchips",
-        "test": "praying to the digital deities that this works",
-
-        // People & Places
-        "friend": "co-conspirator in this simulation",
-        "people": "unpredictable hairless primates",
-        "human": "bipedal anxiety-ridden mammal",
-        "gym": "sweat dungeon of heavy metal dysmorphia",
-        "home": "the decompression chamber of my anxiety",
-        "house": "overpriced brick box",
-        "school": "institutional compliance training facility",
-        "university": "premium subscription protocol for debt acquisition",
-        "car": "rolling gas-guzzling metal cage",
-        "phone": "the glowing black mirror of micro-doses of dopamine",
-        "computer": "the lightning-infused sand box that rules my life",
-
-        // Conceptual & Meta
-        "life": "unsolicited subscription to linear time",
-        "time": "the relentless marching illusion",
-        "world": "this chaotic spinning wet space rock",
-        "internet": "the global network of screaming humans",
-        "code": "spaghetti logical configurations",
-        "bug": "unplanned emergent feature of my genius",
-        "fix": "slapping duct tape on digital structural decay",
-        "problem": "catastrophic cosmic roadblock",
-        "system": "the oppressive digital machine",
-        "user": "the chaotic entity pressing random buttons"
+        // Adjectives & Feelings
+        "happy": "hippo",      // "So happy" -> "So hippo"
+        "sorry": "sorry",      // We can swap to:
+        "sorry": "safari",     // "I am sorry" -> "I am safari"
+        "tired": "tried",      // "So tired" -> "So tried" (classic)
+        "busy": "busty",       // "Very busy" -> "Very busty"
+        "ready": "radish",     // "Are you ready" -> "Are you radish"
+        "great": "grate",      // "Great job" -> "Grate job"
+        "good": "goose",       // "Good morning" -> "Goose morning"
+        "bad": "bat",          // "Bad idea" -> "Bat idea"
+        "beautiful": "barnacle" // "Beautiful day" -> "Barnacle day"
     };
 
     function processTyping(event) {
@@ -90,28 +57,27 @@
         let currentRawText = inputField.value || inputField.innerText || "";
         if (!currentRawText) return;
 
-        // Split text cleanly while preserving spaces and line breaks
+        // Split words and look for exact end-of-word spacing triggers
         let structuralTokens = currentRawText.split(/(\s+)/);
         let modificationFlag = false;
 
         for (let i = 0; i < structuralTokens.length; i++) {
             let normalizedToken = structuralTokens[i].toLowerCase().trim();
             
-            // If the typed English word exists in our massive funny mapping registry
-            if (megaDictionary[normalizedToken]) {
-                structuralTokens[i] = megaDictionary[normalizedToken];
+            // Check if the common English word matches our look-alike typo database
+            if (lookAlikeDictionary[normalizedToken]) {
+                structuralTokens[i] = lookAlikeDictionary[normalizedToken];
                 modificationFlag = true;
             }
         }
 
-        // Apply changes instantly back into the DOM element without breaking user input focus
+        // Inject the funny typo back into the input field smoothly
         if (modificationFlag) {
             let savedCursorStart = inputField.selectionStart;
             let savedCursorEnd = inputField.selectionEnd;
 
             if (inputField.value !== undefined) {
                 inputField.value = structuralTokens.join("");
-                // Restore typing cursor safely
                 inputField.setSelectionRange(savedCursorStart, savedCursorEnd);
             } else {
                 inputField.innerText = structuralTokens.join("");
@@ -119,6 +85,5 @@
         }
     }
 
-    // Intercept input dynamically across all web fields reactively
     document.addEventListener("input", processTyping, true);
 })();
