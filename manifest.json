@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Funny AutoCorrect Everywhere (FACE)",
+  "name": "Funny AutoCorrect Everywhere",
   "version": "1.0",
-  "description": "Instantly turns ordinary English words into hilariously dramatic, chaotic, or bizarre alternatives across the web.",
-  "permissions": [
-    "activeTab"
-  ],
+  "description": "Instantly replaces common English words with look-alike chaotic alternatives across all websites.",
+  "icons": {
+    "48": "icon.png"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
